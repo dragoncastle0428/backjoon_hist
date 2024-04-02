@@ -6,7 +6,7 @@ count = 1
 num = 666
 while count < n:
     num += 1
-    if str(num).__contains__("666"):
+    if "666" in str(num):
         count += 1
 
 print(num)
