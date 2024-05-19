@@ -1,26 +1,17 @@
 import sys
+input = sys.stdin.readline
 
-num = 0
+def cut(start, n):
+    if n == 1: return
+    for i in range(start + n//3, start + (n//3)*2):
+        result[i] = ' '
+    cut(start, n//3) # 왼쪽
+    cut(start + (n//3) * 2, n //3) # 오른쪽
 
-
-def recursive(n):
-    if n > 0:
-        erase = False
-        gap = 3 ** (n - 1)
-        for i in range(0, size, gap):
-            if erase:
-                for j in range(i, i + gap):
-                    l[j] = " "
-            erase = not erase
-        recursive(n - 1)
-
-
-while True:
+while 1:
     try:
-        num = int(sys.stdin.readline())
-        size = 3 ** num
-        l = ["-" for _ in range(size)]
-        recursive(num)
-        print(*l, sep='')
-    except:
-        break
+        n = int(input())
+        result = ['-']*(3**n)
+        cut(0, 3**n)
+        print(''.join(result))
+    except: break
